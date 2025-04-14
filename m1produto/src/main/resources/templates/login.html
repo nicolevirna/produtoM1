@@ -7,38 +7,46 @@
 </head>
 <body>
 
+<!-- Container da tela de login -->
 <div class="container login-container">
     <h2>Login</h2>
 
+    <!-- Formulário de login -->
     <form th:action="@{/login}" method="post">
+        <!-- Campo de usuário -->
         <label for="username">Usuário:</label>
         <input type="text" id="username" name="username" required/>
 
+        <!-- Campo de senha -->
         <label for="password">Senha:</label>
         <input type="password" id="password" name="password" required/>
 
+        <!-- Botões -->
         <div class="login-buttons">
             <button type="submit" class="btn">Entrar</button>
             <button type="button" id="toggle-dark" class="btn">🌙</button>
         </div>
 
+        <!-- Mensagem de erro se login falhar -->
         <div th:if="${error}" class="error">
             Usuário ou senha inválidos!
         </div>
-        <div th:if="${logout}" class="success">
 
-        Logout realizado com sucesso!
+        <!-- Mensagem de sucesso se logout ocorrer -->
+        <div th:if="${logout}" class="success">
+            Logout realizado com sucesso!
         </div>
     </form>
 </div>
 
+<!-- Script para alternar modo escuro -->
 <script>
-    // Aplica modo escuro se estiver salvo
+    // Aplica modo escuro se já estiver salvo
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark');
     }
 
-    // Toggle dark mode e salva no localStorage
+    // Alterna o modo escuro e salva preferência
     const toggle = document.getElementById('toggle-dark');
     toggle.addEventListener('click', () => {
         document.body.classList.toggle('dark');

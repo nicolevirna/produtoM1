@@ -3,32 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <!-- Link para o CSS da aplicação -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
+<!-- Barra de navegação (navbar) -->
 <div class="navbar">
     <div><strong>Meu Sistema</strong></div>
     <div>
+        <!-- Link para a lista de produtos -->
         <a th:href="@{/produtos}">Produtos</a>
+
+        <!-- Botão para logout usando método POST -->
         <form th:action="@{/logout}" method="post" style="display:inline;">
             <button type="submit" class="btn">Sair</button>
         </form>
+
+        <!-- Botão para alternar modo escuro -->
         <button id="toggle-dark">🌙 Modo Escuro</button>
     </div>
 </div>
 
+<!-- Conteúdo principal da página -->
 <div class="container">
     <h1>Bem-vindo à Home de Produtos!</h1>
     <p>Use o menu acima para navegar.</p>
 </div>
 
+<!-- Script do modo escuro -->
 <script>
-    // Aplica modo escuro se já estiver salvo
+    // Aplica o modo escuro se já estiver ativado anteriormente
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark');
     }
 
+    // Alterna o modo escuro ao clicar no botão
     const toggle = document.getElementById('toggle-dark');
     toggle.addEventListener('click', () => {
         document.body.classList.toggle('dark');

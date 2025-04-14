@@ -7,20 +7,27 @@
 </head>
 <body>
 
+<!-- Navbar para navegação entre páginas -->
 <div class="navbar">
     <div><strong>Produtos</strong></div>
     <div>
+        <!-- Link para a Home -->
         <a th:href="@{/home}">🏠 Home</a>
+
+        <!-- Link para adicionar novo produto -->
         <a th:href="@{/produtos/novo}">+ Novo Produto</a>
+
+        <!-- Botão de logout -->
         <form th:action="@{/logout}" method="post" style="display:inline;">
             <button type="submit" class="btn">Sair</button>
         </form>
+
+        <!-- Botão para alternar modo escuro -->
         <button id="toggle-dark">🌙</button>
     </div>
 </div>
 
-
-
+<!-- Tabela que exibe os produtos cadastrados -->
 <div class="container">
     <h2>Produtos Cadastrados</h2>
     <table>
@@ -34,20 +41,26 @@
         </tr>
         </thead>
         <tbody>
+        <!-- Laço para percorrer a lista de produtos e exibir na tabela -->
         <tr th:each="produto : ${produtos}">
             <td th:text="${produto.nome}"></td>
             <td th:text="${produto.descricao}"></td>
             <td th:text="${produto.preco}"></td>
             <td th:text="${produto.estoque}"></td>
             <td>
+                <!-- Link para editar produto -->
                 <a th:href="@{/produtos/editar/{id}(id=${produto.id})}" class="btn">Editar</a>
-                <a th:href="@{/produtos/excluir/{id}(id=${produto.id})}" class="btn">Excluir</a>
+
+                <!-- Link para excluir produto -->
+                <a href="#" th:onclick="'return confirmarExclusao(' + ${produto.id} + ');'" class="btn">Excluir</a>
+
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 
+<!-- Script para modo escuro -->
 <script>
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark');
@@ -57,6 +70,25 @@
         document.body.classList.toggle('dark');
         localStorage.setItem('darkMode', document.body.classList.contains('dark'));
     });
+</script>
+<script>
+    // Script para o modo escuro (já presente)
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+    }
+
+    document.getElementById('toggle-dark').addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    });
+
+    //  Novo script: confirmação de exclusão
+    function confirmarExclusao(id) {
+        if (confirm("Tem certeza que deseja excluir este produto?")) {
+            window.location.href = "/produtos/excluir/" + id;
+        }
+        return false;
+    }
 </script>
 
 </body>
