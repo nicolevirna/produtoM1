@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <div><strong>Produtos</strong></div>
+    <div>
+        <a th:href="@{/home}">🏠 Home</a>
+        <a th:href="@{/produtos/novo}">+ Novo Produto</a>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn">Sair</button>
+        </form>
+        <button id="toggle-dark">🌙</button>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h2>Produtos Cadastrados</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="produto : ${produtos}">
+            <td th:text="${produto.nome}"></td>
+            <td th:text="${produto.descricao}"></td>
+            <td th:text="${produto.preco}"></td>
+            <td th:text="${produto.estoque}"></td>
+            <td>
+                <a th:href="@{/produtos/editar/{id}(id=${produto.id})}" class="btn">Editar</a>
+                <a th:href="@{/produtos/excluir/{id}(id=${produto.id})}" class="btn">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+    }
+
+    document.getElementById('toggle-dark').addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    });
+</script>
+
+</body>
+</html>

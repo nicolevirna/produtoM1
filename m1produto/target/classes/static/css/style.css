@@ -1,0 +1,148 @@
+:root {
+    --bg-color: #f2f2f2;
+    --text-color: #2c3e50;
+    --card-bg: white;
+    --navbar-bg: #2c3e50;
+    --navbar-text: white;
+    --table-header-bg: #34495e;
+    --table-header-text: white;
+    --button-bg: #3498db;
+    --button-hover: #2980b9;
+}
+
+body.dark {
+    --bg-color: #1e1e1e;
+    --text-color: #ffffff;
+    --card-bg: #2a2a2a;
+    --navbar-bg: #111;
+    --navbar-text: #fff;
+    --table-header-bg: #333;
+    --table-header-text: #fff;
+    --button-bg: #555;
+    --button-hover: #777;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.navbar {
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: var(--navbar-text);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: var(--text-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+    color: var(--text-color);
+}
+
+th {
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text);
+}
+
+.btn {
+    padding: 0.4rem 0.8rem;
+    background-color: var(--button-bg);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--button-hover);
+}
+
+form label {
+    display: block;
+    margin-top: 1rem;
+}
+
+form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Botão para alternar o modo escuro */
+#toggle-dark {
+    background: none;
+    border: none;
+    color: var(--navbar-text);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.success {
+    color: green;
+    margin-top: 10px;
+}
+
